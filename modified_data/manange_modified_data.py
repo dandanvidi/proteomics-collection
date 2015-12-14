@@ -8,12 +8,12 @@ import pandas as pd
 import csv
 import numpy as np
 
-BW = pd.DataFrame.from_csv("ecoli_BW_Schmidt_et_al_2015.csv")
-others = pd.DataFrame.from_csv("ecoli_others_Schmidt_et_al_2015.csv")
-not_mapped = csv.writer(open('../supporting_information/unmapped_proteins.csv','w'))
+BW = pd.DataFrame.from_csv("ecoli_BW_Schmidt_et_al_2015_copies_cell.csv")
+others = pd.DataFrame.from_csv("ecoli_others_Schmidt_et_al_2015_copies_cell.csv")
+not_mapped = csv.writer(open('../supporting_data/unmapped_proteins.csv','w'))
 
 uni_to_b = {row[48:54]:row[0:5].split(';')[0].strip()
-            for row in open("../source_data/all_ecoli_genes.txt", 'r')}
+            for row in open("../supporting_data/all_ecoli_genes.txt", 'r')}
 
 manual_replacememnts = {
 'D0EX67':'b1107',
@@ -37,16 +37,20 @@ for g in schmidt.index:
         print g
         schmidt.drop(g, inplace=True)
         
-schmidt.index.name = 'Bnumber'
 new_index = [uni_to_b[g] if g in uni_to_b.iterkeys() else g for g in schmidt.index]
-schmidt_bnumbres = schmidt.copy()
-schmidt_bnumbres.index = new_index
+schmidt.index = new_index
 
-bnumber_duplicates = schmidt_bnumbres.index[np.where(schmidt_bnumbres.index.duplicated())[0]]
+bnumber_duplicates = schmidt.index[np.where(schmidt.index.duplicated())[0]]
 for i in bnumber_duplicates:
     
-    tmp = schmidt_bnumbres.loc[bnumber_duplicates].sum()
-    schmidt_bnumbres.drop(i,inplace=True)
-    schmidt_bnumbres.loc[i] = tmp
+    tmp = schmidt.loc[bnumber_duplicates].sum()
+    schmidt.drop(i,inplace=True)
+    schmidt.loc[i] = tmp
     
-schmidt_bnumbres.to_csv("../copies_fL/ecoli_Schmidt_et_al_2015.csv")
+
+gc = pd.DataFrame.from_csv('../growth_conditions.csv')
+volume = gc['single cell volume [fL]'] # fL per cell
+volume = volume.loc[schmidt.columns]
+
+schmidt = schmidt.mul(volume,axis=1)
+schmidt.to_csv("../copies_fL/ecoli_Schmidt_et_al_2015.csv")
