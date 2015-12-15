@@ -1,8 +1,8 @@
 growth condition,strain,media,media_key,growth mode,growth rate [h-1],uptake rate [mmol gCDW-1 h-1],growth rate std [h-1],single cell volume [fL],protein in gCDW [%],comments,reference
 GLC_STATIONARY1d_mu=-0.01_S,BW25113,,,batch,-0.01,,0.003,1.62,,stationary 1 day,Schmidt et al. 2015
 GLC_STATIONARY3d_mu=-0.01_S,BW25113,,,batch,-0.01,,0.003,1.62,,stationary 3 day,Schmidt et al. 2015
-STARVED@8H_mu=-0.005_H,,,,batch,-0.005,,0.005,0.92,,starved,Heinemann
-PERSIST@8H_mu=0.02_H,,,,batch,0.02,,0.005,0.61,,persisters,Heinemann
+STARVED@8H_mu=-0.005_H,BW25113,,,batch,-0.005,,0.005,0.92,,starved,Heinemann unpublished
+PERSIST@8H_mu=0.02_H,BW25113,,,batch,0.02,,0.005,0.61,,persisters,Heinemann unpublished
 GLC_CHEM_mu=0.11_V,BW25113,glucose,glc,chemostat,0.11,,0,0.73,61,,Valgepea et al. 2013
 GLC_CHEM_mu=0.12_S,BW25113,glucose,glc,chemostat,0.12,,0,0.95,,,Schmidt et al. 2015
 GLC_CHEM_mu=0.20_S,BW25113,glucose,glc,chemostat,0.2,,0,1.04,,,Schmidt et al. 2015
@@ -39,9 +39,9 @@ GLC+AA_CHEM_mu=0.53_P,BW25113,glucose+aa,,chemostat,0.53,3.91,0,,,,Peebo et al. 
 GLC+AA_CHEM_mu=0.55_P,BW25113,glucose+aa,,chemostat,0.55,4.05,0,,,,Peebo et al. 2015
 GLC+SALTS_BATCH_mu=0.55_S,BW25113,glucose,glc,batch,0.55,,0.01,1.4,,50 mM NaCl,Schmidt et al. 2015
 XYL_BATCH_mu=0.55_S,BW25113,xylose,xyl_D,batch,0.55,,0.01,1.4,,,Schmidt et al. 2015
-FUM_BATCH_mu=0.55_H,,fumarate,fum,batch,0.55,,0.03,1.11,,,Heinemann
+FUM_BATCH_mu=0.55_H,BW25113,fumarate,fum,batch,0.55,,0.03,1.11,,,Heinemann unpublished
 GLC_BATCH_mu=0.58_S,BW25113,glucose,glc,batch,0.58,,0.01,1.42,,,Schmidt et al. 2015
-GLC_BATCH_mu=0.6_H,,glucose,glc,batch,0.6,,,2.15,,,Heinemann
+GLC_BATCH_mu=0.6_H,BW25113,glucose,glc,batch,0.6,,,2.15,,,Heinemann unpublished
 GLC+AA_CHEM_mu=0.63_P,BW25113,glucose+aa,,chemostat,0.63,4.62,0,,,,Peebo et al. 2015
 GLC@pH6_BATCH_mu=0.63_S,BW25113,glucose,glc,batch,0.63,,0.005,1.47,,pH6,Schmidt et al. 2015
 GLC+AA_CHEM_mu=0.65_P,BW25113,glucose+aa,,chemostat,0.65,4.78,0,,,,Peebo et al. 2015

@@ -17,5 +17,7 @@ for f in dirlist:
     except:
         print "the following file was ignored: "+f
 merged.dropna(how='all', inplace=True)
-
+gr = gc['growth rate [h-1]']
+gr.sort
+merged = merged[gr.index]
 merged.to_csv('../meta_abundance[copies_fL].csv')
