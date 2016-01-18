@@ -29,6 +29,8 @@ manual_replacememnts = {
 'C9M2Y6':'b2755'}
 
 uni_to_b.update(manual_replacememnts)
+
+id_mapper = pd.DataFrame.from_dict(uni_to_b.items()).set_index(0)
     
 schmidt = BW.join(others, how='outer')
 schmidt = schmidt.join(heinemann, how='outer')
@@ -54,5 +56,5 @@ gc = pd.DataFrame.from_csv('../growth_conditions.csv')
 volume = gc['single cell volume [fL]'] # fL per cell
 volume = volume.loc[schmidt.columns]
 
-schmidt = schmidt.mul(volume,axis=1)
+schmidt = schmidt.div(volume,axis=1)
 schmidt.to_csv("../copies_fL/ecoli_Schmidt_et_al_2015+heinemann.csv")
